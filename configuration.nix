@@ -69,6 +69,12 @@
 
   # --------- Display manager & Desktop --------- #
 
+  # Noctalia System Dependencies
+  services.upower.enable = true;
+  hardware.bluetooth.enable = true; # Required by Noctalia tutorial
+  services.power-profiles-daemon.enable = true;
+  programs.niri.enable = true; # Wayland compositor for Noctalia
+
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   # services.xserver.enable = true;
@@ -111,10 +117,6 @@
     isNormalUser = true;
     description = "sutang";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
 
   # Enable automatic login for the user.
@@ -133,8 +135,13 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    clash-verge-rev
   ];
+
+  programs.clash-verge = {
+    enable = true;
+    package = pkgs.clash-verge-rev;
+    tun.enable = true;
+  };
 
   #services.clash-verge = {
   #  enable = true;
