@@ -133,12 +133,9 @@
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    clash-verge # Direct installation
   ];
 
-  programs.clash-verge = {
-    enable = true;
-    tun.enable = true;
-  };
 
   #services.clash-verge = {
   #  enable = true;
